@@ -27,5 +27,9 @@ messaging.onBackgroundMessage((payload) => {
 // Manejar clics en la notificación
 self.addEventListener('notificationclick', (event) => {
     event.notification.close();
-    event.waitUntil(clients.openWindow('https://lxls23.github.io/PushNotificationsFCM/'));
+    const url = event.notification.data.url || "https://lxls23.github.io/PushNotificationsFCM/";
+    event.waitUntil(
+        clients.openWindow(url)
+    );
+
 });
